@@ -20,6 +20,62 @@
  */
 public class KLargetstPoints {
 
+  /**
+   * 最小堆
+   * @param <T> 堆中元素类型
+   */
+  static class minHeap<T extends Comparable> {
+    final T[] elements;
+    int len;
+
+    public minHeap(T[] elements) {
+      len = elements.length;
+      this.elements = elements;
+      build();
+    }
+
+    /** 建堆 */
+    private void build() {
+      for (int i = (elements.length - 1) / 2; i >=0; i--) {
+        minHeap(i);
+      }
+    }
+
+    public T getMin() {
+      T tmp = elements[0];
+      elements[0] = elements[-- len];
+      minHeap(0);
+      return tmp;
+    }
+
+    /**
+     * 泛型T不可实例化（不可创建数组），故此处插入仅为取代堆顶
+     */
+    public void insert(T t) {
+      elements[0] = t;
+      minHeap(0);
+    }
+
+    private void minHeap(int i) { //键堆步骤,调整一个节点的位置
+      int m =  2 * i + 1;
+      if (m >= len) {
+        return;
+      }
+      int p = i;
+      int n = m + 1;
+      if (n < len && elements[m].compareTo(elements[n]) > 0) {
+        m = n;
+      }
+
+      if (elements[p].compareTo(elements[m]) > 0) {
+        T tmp1 = elements[p];
+        elements[p] = elements[m];
+        elements[m] = tmp1;
+        minHeap(m);
+      }
+    }
+  }
+
   static class Point {
     int x;
     int y;
@@ -32,42 +88,39 @@ public class KLargetstPoints {
     }
   }
 
-  public static int compare(double[] dis, int[] index, Point[] points, int a, int b) {
-    if (dis[a] > dis[b]) {
-      return 1;
-    } else if (dis[a] == dis[b]) {
-      if (points[index[a]].x > points[index[b]].x) {
+  private static class Property implements Comparable<Property>{
+    final double dis;
+    final int index;
+    final double x;
+    final double y;
+
+    public Property(double dis, int index, double x, double y) {
+      this.dis = dis;
+      this.index = index;
+      this.x = x;
+      this.y = y;
+    }
+
+
+    @Override
+    public int compareTo(Property o) {
+      if (dis > o.dis) {
         return 1;
-      } else if (points[index[a]].x == points[index[b]].x) {
-        if (points[index[a]].y > points[index[b]].y) {
+      } else if (dis == o.dis) {
+        if (x > o.x) {
           return 1;
+        } else if (x == o.x) {
+          if (y > o.y) {
+            return 1;
+          }
         }
       }
-    }
-    return -1;
-  }
-
-  public static void minHeap(double[] dis, int[] index, Point[] points, int i, int len) { //键堆步骤
-    int m =  2 * i + 1;
-    if (m >= len) {
-      return;
-    }
-    int p = i;
-    int n = m + 1;
-    if (n < len && compare(dis, index, points, m, n) > 0 ) {
-        m = n;
-      }
-
-    if (compare(dis, index, points, p, m) > 0) {
-      double tmp1 = dis[p];
-      int tmp2 = index[p];
-      dis[p] = dis[m];
-      dis[m] = tmp1;
-      index[p] = index[m];
-      index[m] = tmp2;
-      minHeap(dis, index, points, m, len);
+      return -1;
     }
   }
+
+
+
 
   public static void out(int[] index) { //输出index数组
     int len = index.length;
@@ -91,23 +144,17 @@ public class KLargetstPoints {
     }
     Point[] res = new Point[k];
     int len = points.length;
-    double[] dis = new double[len];//heap数组
-    int[] index = new int[len];//将heap数组与原来点位置关联（其实可以写一个类直接包含point与距离）
+    Property[] properties = new Property[len];
     for (int i = 0; i< len; i++) {
-      dis[i] = (points[i].x-origin.x) * (points[i].x-origin.x) + (points[i].y-origin.y) * (points[i].y-origin.y);
-      index[i] = i;
+      double dis = (points[i].x-origin.x) * (points[i].x-origin.x) + (points[i].y-origin.y) * (points[i].y-origin.y);
+      properties[i] = new Property(dis, i, points[i].x, points[i].y);
     }
 
-    for (int i = (len-1) / 2; i >=0; i--) {//建堆
-      minHeap(dis, index, points, i, len);
-    }
+    minHeap<Property> heap = new minHeap<>(properties);
 
     int length = len;
     for (int i = 0; i < k && i < length; i++) {//取k个最小值
-      res[i] = points[index[0]];
-      index[0] = index[len - 1];
-      dis[0] = dis[-- len];
-      minHeap(dis, index, points, 0, len);
+      res[i] = points[heap.getMin().index];
     }
     return res;
   }
