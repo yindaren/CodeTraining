@@ -4,11 +4,14 @@
 public class LinkedListRelated {
 
     public static class ListNode {
-        int val;ListNode next;
+        int val;
+        ListNode next;
+        ListNode random;
         ListNode(int val)
         {
             this.val = val;
             this.next = null;
+            this.random = null;
         }
     }
 
@@ -71,6 +74,82 @@ public class LinkedListRelated {
             tmp.next = null;
             return newHead;
         }
+    }
+
+    /**
+     * 给出一个链表，每个节点包含一个额外增加的随机指针可以指向链表中的任何节点或空的节点。返回一个深拷贝的链表。
+     *
+     * 这是一道经典题，主要是random指向的节点要对应到新拷贝的节点上
+     * 思路：首先依次拷贝整个链表并插入原来的链表中，如A->B->C->null =》 A->A->B->B->C->C->null （后一个是新拷贝出来的）
+     *       然后将拷贝得到的A.random指向原来A.random.next,最后将链表拆开即可
+     */
+    public ListNode copyRandomList(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode cur = head;
+        while (cur != null) { //拷贝并插入
+            ListNode tmp = cur.next;
+            cur.next = new ListNode(cur.val);
+            cur.next.next = tmp;
+            cur = tmp;
+        }
+        cur = head;
+        while (cur != null) { //random指向
+            ListNode tmp = cur.next;
+            if (cur.random != null) {
+                tmp.random = cur.random.next;
+            }
+            cur = tmp.next;
+        }
+        ListNode tmp = head.next;
+        ListNode newHead = head.next;
+        head.next = tmp.next;
+        cur = head.next;
+        while (cur != null) { //拆分链表
+            tmp.next = cur.next;
+            tmp = tmp.next;
+
+            cur.next = tmp.next;
+            cur = cur.next;
+        }
+        return newHead;
+    }
+
+    /**
+     * 用插入排序对链表排序
+     * 数组可以从后往前或者从前往后，但链表只能从前往后。思路简单，实现的时候需小心
+     */
+    public ListNode insertionSortList(ListNode head) {
+        // write your code here
+        if (head == null) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode cur = head.next;
+        //ListNode pre = head;
+        while (cur != null) {
+            ListNode curTmp = dummy.next;
+            ListNode preTmp = dummy;
+            while (curTmp.val < cur.val) {
+                preTmp = preTmp.next;
+                curTmp = curTmp.next;
+            }
+            if (curTmp == cur) {
+                cur = cur.next;
+            } else {
+                preTmp.next = cur;
+                ListNode tmp = cur.next;
+                cur.next = curTmp;
+                while (curTmp.next != cur) {
+                    curTmp = curTmp.next;
+                }
+                curTmp.next = tmp;
+                cur = tmp;
+            }
+        }
+        return dummy.next;
     }
 
     /**
@@ -183,4 +262,5 @@ public class LinkedListRelated {
             return node.next;
         }
     }
+
 }
