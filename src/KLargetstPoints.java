@@ -159,7 +159,7 @@ public class KLargetstPoints {
     return res;
   }
 
-  public static void main(String[] args) {
+  public static void main(StringRelated[] args) {
     Point[] points = {new Point(4,6), new Point(4, 7),
           new Point(4, 4), new Point(2, 5), new Point(1, 1)};
 //    Point[] points = {new Point(0,0), new Point(0, 9)};

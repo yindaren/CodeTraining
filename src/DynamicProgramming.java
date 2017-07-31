@@ -47,7 +47,7 @@ public class DynamicProgramming {
         return history[0];
     }
 
-    public static void main(String[] args) {
+    public static void main(StringRelated[] args) {
         int[] sample = new int[]{3,2,6,5,0,3};
         new DynamicProgramming().maxProfit(sample);
     }

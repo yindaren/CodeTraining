@@ -9,7 +9,7 @@ public class Search {
      * @return the target key if exits, else
      */
     public int binarySearch(int[] num, int start, int end, int target) {
-        if (end <= start) return - start - 1;
+        if (end <= start) return - start - 1;//返回应该插入的位置的负数 - 1
         int mid = (end + start)/2;
         if (num[mid] == target) {
             return mid;

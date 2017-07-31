@@ -156,7 +156,7 @@ public class Sort {
         quickSort(a, s, end);
     }
 
-    public static void main (String[] args) {
+    public static void main (StringRelated[] args) {
         int[] k = new int[]{7,6,5,4,7,3,2,1,0,-1};
         //quickSort(k, 0, k.length - 1);
         Sort.quickSort(k, 0, k.length - 1);

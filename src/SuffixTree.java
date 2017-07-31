@@ -329,7 +329,7 @@ public class SuffixTree {
     }
   }
 
-  public static void main(String[] args) {
+  public static void main(StringRelated[] args) {
     SuffixTree tree = new SuffixTree();
     tree.build("abcabc$");
     tree.print();
