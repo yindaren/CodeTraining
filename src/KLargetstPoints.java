@@ -49,7 +49,7 @@ public class KLargetstPoints {
     }
 
     /**
-     * 泛型T不可实例化（不可创建数组），故此处插入仅为取代堆顶
+     * 泛型T不可实例化（不可创建数组），故此处插入仅为取代堆顶，只能用(T[]) new object[]代替
      */
     public void insert(T t) {
       elements[0] = t;
