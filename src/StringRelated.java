@@ -87,6 +87,7 @@ public class StringRelated {
                 int lower = i - maxLen > 0 ? i - maxLen : 0;
                 for (int j = i - 1; j >= lower; j--) {//超过字典中最大词的长度就不必继续计算了
                     if (!flag[j]) continue;
+                    // 这里不用考虑j+1 到i+1之间是否能分成多个断，若能则之前的循环早就出结果了
                     else if (dict.contains(s.substring(j + 1, i + 1))) {
                         flag[i] = true;
                         break;

@@ -33,6 +33,9 @@ public class Search {
         //if (end <= start) return - start - 1;
         while (low < up) {
             int mid = (low + up)/2;
+            if (num[mid] == target) {
+                return mid;
+            }
             if (num[mid] < target) {
                 low = mid + 1;
             } else {
@@ -41,7 +44,7 @@ public class Search {
         }
         if (num[up] == target) {
             return up;
-        } else if (num[up] >= target) {//未找到返回同上
+        } else if (num[up] > target) {//未找到返回同上
             return - low - 1;
         } else {
             return - low - 2;

@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -38,6 +40,7 @@ public class TwoAndThreeSum {
     if (len < 3) {
       return list;
     }
+
     Arrays.sort(numbers);
     int last = numbers[0] - 1;
     for (int i = 0; i < len - 2; i++) {//先找第一个
@@ -87,9 +90,9 @@ public class TwoAndThreeSum {
             return target;
           } else if (Math.abs(k - numbers[p] ) < Math.abs(sum - target)) {
             sum = numbers[i] + numbers[j] + numbers[p];
-            if (sum > target) { //剪枝
-              break;
-            }
+          }
+          if (numbers[p] > k) { //剪枝, 差距只会越来越大
+            break;
           }
         }
       }

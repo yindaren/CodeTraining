@@ -13,8 +13,8 @@ public class MaxSubSequenceSum {
      */
     public static int maxSum(int[] A) {
         int len = A.length;
-        int preMax = Integer.MIN_VALUE;
-        int preBaseMax = Integer.MIN_VALUE;
+        int preMax = Integer.MIN_VALUE; // 最大值
+        int preBaseMax = Integer.MIN_VALUE; // 包含最后一位的最大值
         int next = 0;
         while (next < len) {//这里也可以记录数列序号，以便得到实际的子序列
             preBaseMax = Math.max(A[next], preBaseMax + A[next]);//更新preBaseMax

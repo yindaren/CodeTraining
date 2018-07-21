@@ -25,8 +25,8 @@ public class Sort {
     /**
      * 插入排序,升序
      * @param a array to be sorted
-     * @param start the start index，inclusive
-     * @param end the end index,
+     * @param start the start index inclusive
+     * @param end the end index
      */
     public static void insertionSort(int[] a, int start, int end) {
         int len = end - start + 1;
