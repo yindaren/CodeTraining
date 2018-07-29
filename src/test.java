@@ -46,40 +46,7 @@ public class test {
     }
   }
 
-  public static int[][] minDis(int[][] dis, int n) {
-    int m = dis.length;
-    int[][] result = new int[m][m];
-    int[][][] dp = new int[m][m][n];
-    for(int i=0;i<m;i++) {
-      dp[i] = new int[m][n];
-      for(int j=0;j<m;j++) {
-        dp[i][j] = new int[n];
-        if(i!=j) {
-          dp[i][j][0] = dis[i][j];
-        }
-      }
-    }
-    for(int k=1;k<n;k++) {
-      for(int i=0;i<m;i++) {
-        for(int j=i;j<m;j++) {
-          int min = Integer.MAX_VALUE;
-          for(int p=0;p<m;p++) {
-            if(p!=i && dp[p][j][k-1]!=0) {
-              min = Math.min(min, dis[i][p] + dp[p][j][k-1]);
-            }
-          }
-          dp[i][j][k] = min;
-          dp[j][i][k] = min;
-        }
-      }
-    }
-    for(int i=0;i<m;i++) {
-      for(int j=0;j<m;j++) {
-        result[i][j] = dp[i][j][n-1];
-      }
-    }
-    return result;
-  }
+
 
 
   static class Node {
@@ -89,8 +56,9 @@ public class test {
 
 
   public static void main(String[] args) {
+    int[] a = {1,2,3};
+    "".contains("");
     int[][] dis = {{0,2,3}, {2,0,1}, {3,1,0}};
-    int[][] r = minDis(dis, 2);
-    printArray(r);
+    printArray(null);
   }
 }
