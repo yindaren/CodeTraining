@@ -1,5 +1,8 @@
+import util.utils;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class test {
 
@@ -34,17 +37,7 @@ public class test {
   }
 
 
-  public static void printArray(int[][] a) {
-    int m = a.length;
-    int n = a[0].length;
-    for(int i=0;i<m;i++) {
-      for(int j=0;j<n;j++) {
-        System.out.print(a[i][j]);
-        System.out.print(",");
-      }
-      System.out.print("\n");
-    }
-  }
+
 
 
 
@@ -59,6 +52,6 @@ public class test {
     int[] a = {1,2,3};
     "".contains("");
     int[][] dis = {{0,2,3}, {2,0,1}, {3,1,0}};
-    printArray(null);
+    //utils.printArray(null);
   }
 }
