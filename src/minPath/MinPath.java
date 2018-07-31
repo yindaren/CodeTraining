@@ -1,3 +1,5 @@
+package minPath;
+
 /**
  * 给定一个二维数组dis，dis[i][j]表示点i到点j的距离，给定路径数k, 求出所有点之间的最短路径
  * 若无k的限制，单源最短路径可用Dijkstra算法

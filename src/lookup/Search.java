@@ -1,3 +1,5 @@
+package lookup;
+
 /**
  * 搜索相关
  */

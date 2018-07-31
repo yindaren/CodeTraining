@@ -1,6 +1,7 @@
+package order;
 
 /**
- * 一些排序，堆排序见{@link KLargetstPoints.minHeap}
+ * 一些排序，堆排序见{@link  KLargetstPoints.minHeap}
  *
  * 基本有序使用插入排序
  * 序列较短时快速排序的效率不高，直接使用快排
@@ -156,13 +157,13 @@ public class Sort {
         quickSort(a, s, end);
     }
 
-    public static void main (StringRelated[] args) {
+    public static void main (String[] args) {
         int[] k = new int[]{7,6,5,4,7,3,2,1,0,-1};
         //quickSort(k, 0, k.length - 1);
         Sort.quickSort(k, 0, k.length - 1);
-        //Sort.bubbleSort(k, 0, k.length - 1);
-        //Sort.insertionSort(k, 0, k.length - 1);
-        //Sort.mergeSort(k, 0, k.length - 1);
+        //order.Sort.bubbleSort(k, 0, k.length - 1);
+        //order.Sort.insertionSort(k, 0, k.length - 1);
+        //order.Sort.mergeSort(k, 0, k.length - 1);
         for (int i = 0; i < k.length; i++) {
             System.out.println(k[i]);
         }
