@@ -4,6 +4,7 @@ import java.util.PriorityQueue;
 /**
  * 中位数相关题 1 一个未排序数组 2 两个已排序数组 3 一个不断输入的数字流
  * 思路：均转化为找第k个数的问题，采用分治法
+ *
  */
 
 public class Median {
@@ -69,6 +70,16 @@ public class Median {
      * 1 归并排序 2 分治法，找第k个数（以下实现）
      */
     public double findMedianSortedArrays(int[] A, int[] B) {
+        int m = A.length, n= B.length;
+        int target = (m+n)/2;// 目标是找到第target个数
+        int la=0, ra=0, lb=0, rb=0;
+        while(true) {
+            int tmpM = (ra - la + rb - lb + 2)/2;
+            int ma = (la + ra)/2;
+            int mb = (lb + rb)/2;
+            //if(target > )
+            break;
+        }
         return -1;
     }
 
