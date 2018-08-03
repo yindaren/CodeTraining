@@ -1,4 +1,4 @@
-import string.StringRelated;
+import string.StringMatch3;
 
 /**
  * 假设有一个数组，它的第i个元素是一个给定的股票在第i天的价格。设计一个算法来找到最大的利润。你可以完成尽可能多的交易(多次买卖股票)。
@@ -49,7 +49,7 @@ public class DynamicProgramming {
         return history[0];
     }
 
-    public static void main(StringRelated[] args) {
+    public static void main(StringMatch3[] args) {
         int[] sample = new int[]{3,2,6,5,0,3};
         new DynamicProgramming().maxProfit(sample);
     }

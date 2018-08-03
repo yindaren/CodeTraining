@@ -1,7 +1,11 @@
 import util.utils;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
 
 
 public class test {
@@ -43,8 +47,8 @@ public class test {
 
 
   public static void main(String[] args) {
-    int[] a = {1,2,3};
-    "".contains("");
+    Queue<Integer> a = new LinkedList<>();
+    Stack<Integer> b = new Stack<>();
     int[][] dis = {{0,2,3}, {2,0,1}, {3,1,0}};
     //utils.printArray(null);
   }
