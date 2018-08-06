@@ -1,7 +1,16 @@
+import treeAndGraph.Node;
 import util.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.Stack;
 
 
 public class test {
@@ -37,15 +46,55 @@ public class test {
   }
 
 
+  public static boolean isInterleave(String s1, String s2, String s3) {
+    // write your code here
+    if(s1==null || s2 == null || s3 == null) return false;
+    int n = s1.length();
+    int m = s2.length();
+    int t = s3.length();
+    if(t != m+n) return false;
+    StringBuilder sb = new StringBuilder();
+    int p = 0;
+    for(int i=0;i<n;i++) {
+      while(p < t && s1.charAt(i) != s3.charAt(p)) {
+        sb.append(s3.charAt(p++));
+      }
+      if(p==t) return false;
+      else p++;
+    }
+    if(p<t) sb.append(s3.substring(p));
+    if(sb.toString().equals(s2)) return true;
+    else return false;
 
+  }
+   static class Node {
+      final int value;
+      Node left;
+      Node right;
 
+      Node(int v) {
+        value = v;
+      }
+   }
 
-
+   public static void a(String a) {
+      a+="s";
+   }
 
   public static void main(String[] args) {
-    int[] a = {1,2,3};
-    "".contains("");
-    int[][] dis = {{0,2,3}, {2,0,1}, {3,1,0}};
-    //utils.printArray(null);
+//    String a = "sdfjas;dfjoisdufzjkndfasdkfja;sdfa;dfa;dfaskdjhfasdhjdfakhdgfkajdfasdjfgajksdfgaksdhfasdkbfjkdsfbajksdfhakjsdfbajkdfbakdjsfgaksdhgfjkdsghfkdsfgadsjfgkajsdgfkjasdfh";
+//    String b = "dfnakdjnfjkzghdufguweygfasjkdfgb2gf8asf7tgbgasjkdfgasodf7asdgfajksdfguayfgaogfsdkagfsdhfajksdvfbgkadsghfakdsfgasduyfgajsdkfgajkdghfaksdgfuyadgfasjkdvfjsdkvfakfgauyksgfajkefgjkdasgfdjksfgadjkghfajksdfgaskdjfgasjkdgfuyaegfasdjkfgajkdfygadjskfgjkadfg";
+//    String c = "sdfjas;dfjoisdfnakdjnfjkzghdufguwdufzjkeygfasjkdfgb2gf8asf7ndtgbgasjkdfgasodf7asdfgfajkasdksdfguayfgaogfsdkagfsfjadhfajksdvfbgkadsghfa;sdkdsfgasduyfgajsdkfgafajkdghfaksdgfuyadgfas;dfjkdvfjsdkvfakfgauyksa;dgfajkefgjkdasgfdjksffaskdjhfasdhjdfakhdgadjkghfajgfkajdfksdfgaskdjfgasjkdgfuasdjfgajksdfgaksdhfasdkbfjkdsfbajksdfyaegfasdjkfgajkdfygadjskfgjkadfghakjsdfbajkdfbakdjsfgaksdhgfjkdsghfkdsfgadsjfgkajsdgfkjasdfh";
+//    utils.println(isInterleave(a,b,c));
+    Queue<String> queue = new LinkedList<>();
+    queue.offer("");
+    String b = "";a(b);
+    for(int j=0;j<queue.size();j++) {
+      queue.offer("");
+      queue.offer("");
+      queue.offer("");
+      utils.println("11");
+    }
+
   }
 }

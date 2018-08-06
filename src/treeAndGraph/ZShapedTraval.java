@@ -7,7 +7,7 @@ import java.util.Stack;
 /**
  * 对树进行z字形遍历（奇数层正常层次遍历，偶数层反向遍历）
  */
-public class ZShapedTranval {
+public class ZShapedTraval {
   static class Node {
     Node left, right;
   }
