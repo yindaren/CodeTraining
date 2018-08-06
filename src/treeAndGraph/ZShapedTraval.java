@@ -1,7 +1,5 @@
 package treeAndGraph;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -15,31 +13,30 @@ public class ZShapedTraval {
   public static void zTree(Node root) {
     int layer = 1;
     if(root == null) return;
-    Queue<Node> q = new LinkedList<>();// 正常层次遍历用queue
-    Stack<Node> s = new Stack<>(); // z 字型用stack， 一次先放左子树，一次先放又子树
-    q.add(root);
-    while(!s.isEmpty()) {
-      if(layer%2==1) {
-        while(!s.isEmpty()) {
-          Node n = s.pop();
-          //visit(n);
-          if(n.left != null) s.push(n.left);
-          if(n.right != null) s.push(n.right);
+    // Queue<Node> q = new LinkedList<>();// 正常层次遍历用queue
+    Stack<Node> s1 = new Stack<>(); // z 字型用两个stack， 一次先放左子树，一次先放右子树
+    Stack<Node> s2 = new Stack<>();
+    s1.add(root);
+    while(!s1.isEmpty() || !s2.isEmpty()) {
+      if((layer&1)==1) {
+        while(!s1.isEmpty()) {
+          Node n = s1.pop();
+          // visit(n);
+          if(n.left != null) s2.push(n.left);
+          if(n.right != null) s2.push(n.right);
         }
       }
       else {
-        while(!s.isEmpty()) {
-          Node n = q.remove();
-          //visit(n);
+        while(!s2.isEmpty()) {
+          Node n = s2.pop();
+          // visit(n);
           // should put right first
-          if(n.right != null) q.add(n.right);
-          if(n.left != null) q.add(n.left);
+          if(n.right != null) s1.add(n.right);
+          if(n.left != null) s1.add(n.left);
         }
       }
       layer++;
-
       // visit(n)
-
     }
   }
 }

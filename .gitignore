@@ -3,5 +3,6 @@
 **/target
 .project
 out/
+**/test.java
 **/Test.java
 

@@ -2,8 +2,10 @@ package minPath;
 
 import util.utils;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 最短路径算法：dijkstra, floyd, bellman-ford
@@ -96,6 +98,7 @@ public class ShortestPath {
     while(i++<5)
       dijkstra(example, i);
     i=-1;
+    utils.print("Bellman-Ford:");
     while(i++<5)
       bellman(example, i);
     utils.print("Floyd:");
