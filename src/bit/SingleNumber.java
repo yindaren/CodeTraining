@@ -53,6 +53,7 @@ public class SingleNumber {
      * 且时间复杂度更好，只需要遍历一次，暂时未理解
      */
     public static int singleNumberII2(int[] A) {
+        // todo: 未理解
         int one=0, two=0, three=0;
         for(int i=0; i<A.length; i++){
             two |= one&A[i];
