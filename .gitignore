@@ -3,5 +3,6 @@
 **/target
 .project
 out/
+production/
 **/Test.java
 
