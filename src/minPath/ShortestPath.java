@@ -59,11 +59,11 @@ public class ShortestPath {
    * o(n*e)
    */
   static void bellman(int[][] data, int source) {
-
+    //todo:实现
   }
 
   /**
-   * 思想是动态规划. p[i][j][k]表示最小路径i->j中最大节点为k时的值。
+   * 思想是动态规划. p[i][j][k]表示最小路径i->j中最大节点为k时的值（即该路径中包含的最大节点id为k）。
    * P[i][j][0]即表示Eij的长度，点下标从1开始计数，递推式如下：
    * p[i][j][k] = min( p[i][j][k-1], p[i][k][k-1] + p[k][j][k-1] )
    * 故可根据k一层一层求解，详见以下实现

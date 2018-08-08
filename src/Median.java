@@ -22,6 +22,7 @@ public class Median {
      * @return 最终基准数据在数组中的位置下标
      */
     private static int quickSortPartition(int[] nums, int base, int start, int end) {
+        if(nums == null || start < 0 || base < 0 || end >= nums.length || base >= nums.length || start > end) return -1;
         int tmp = nums[base];
         swap(nums, base, end);
         int p1= start-1; // p1指向【小于】-【大于】之间的分界线
@@ -33,43 +34,48 @@ public class Median {
                 }
             }
         }
-        p1++;
+        p1++;//返回选中节点最终的位置（在数组中的下标）
         swap(nums, p1, end);
         return p1;
-    }
-
-    private static int findM(int[] nums, int target, int start, int end) {
-        int n = end - start + 1;
-        if(n<target) return -1;
-        if(n==1) return nums[start];
-        int p1 = quickSortPartition(nums, end, start, end);
-        int number = p1-start + 1;
-        if(number == target) return nums[p1];
-        else if(number > target) return findM(nums, target, start, p1 - 1);
-        else return findM(nums, target-number, p1+1, end);
     }
 
     /**
      * 题一：未排序数组找中位数
      * 1 排序后输出
-     * 2 类似快排，分成两部分，分治解决(以下实现)
+     * 2 类似快排，分成两部分，分治解决(以下实现，前提是允许改变原数组，平均复杂度O（n），注意理解while条件)
      * 3 建堆实现（单个堆）
      * 4 类似
      *
-     * 以上方法均O(nlogn)
+     *
      *
      * 注：此题偶数也输出第n/2个数，不求均值
      * @param nums 未排序数组
      */
     static int median(int[] nums) {
-        return findM(nums, nums.length/2+1, 0, nums.length);
+        if(nums == null || nums.length == 0) return -1;
+        int n = nums.length;
+        int target = (n-1)/2;
+        int start = 0, end = n-1;
+        int index = quickSortPartition(nums, start, start, end);
+        while(index != target) {
+            if(index > target) {
+                end = index - 1;
+            }
+            else {
+                start = index + 1;
+            }
+            index = quickSortPartition(nums, start, start, end);
+        }
+        return nums[index];
     }
 
     /**
      * 题二：两个排序数组的中位数
-     * 1 归并排序 2 分治法，找第k个数（以下实现）
+     * 1 归并排序
+     * 2 分治法，找第k个数（以下实现）
      */
     public double findMedianSortedArrays(int[] A, int[] B) {
+        // todo(yll): 实现
         int m = A.length, n= B.length;
         int target = (m+n)/2;// 目标是找到第target个数
         int la=0, ra=0, lb=0, rb=0;

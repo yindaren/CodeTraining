@@ -3,7 +3,7 @@ package lookup;
 /**
  * 搜索相关
  */
-public class Search {
+public class BinarySearch {
     /**
      * 二分搜索，有重复的随机返回
      * @start inclusive
@@ -55,7 +55,7 @@ public class Search {
 
     public static void main (String[] args) {
         int[] tmp = new int[]{1, 2, 4, 4, 4, 6, 6, 6, 6, 7, 11};
-        System.out.println(Search.binarySearch(tmp, 3, 10, 8));
-        System.out.println(Search.binarySearch_first(tmp, 3, 10, 8));
+        System.out.println(BinarySearch.binarySearch(tmp, 3, 10, 8));
+        System.out.println(BinarySearch.binarySearch_first(tmp, 3, 10, 8));
     }
 }

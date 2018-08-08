@@ -7,6 +7,7 @@ import util.utils;
  */
 public class StringMatch2 {
   public static int count(String base, String target) {
+    //todo: 找到原题后再做
     if(base==null || base.length() == 0 || target==null || target.length()==0) return -1;
     int m = base.length();
     int n = target.length();
