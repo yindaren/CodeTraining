@@ -3,7 +3,7 @@ package treeAndGraph;
 import java.util.Arrays;
 
 /**
- * 树状数组(Binary Indexed Tree(B.I.T), Fenwick Tree)是一个查询和修改复杂度都为log(n)的数据结构，
+ * 树状数组(Binary Indexed Tree(B.I.Tower), Fenwick Tree)是一个查询和修改复杂度都为log(n)的数据结构，
  * 主要用于查询任意两位之间的所有元素之和。
  *
  * 原理：

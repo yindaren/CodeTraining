@@ -1,6 +1,6 @@
 package string;
 
-import util.utils;
+import util.Utils;
 
 /**
  * 字符串匹配，与1不同的是，子串只需按顺序包含目标串字符即可。如：abcde中的bcd包含bd
@@ -12,13 +12,15 @@ public class StringMatch2 {
     int m = base.length();
     int n = target.length();
     int[][] dp = new int[m][];
+    dp[0] = new int[n];
     if(base.charAt(0) == target.charAt(0)) dp[0][0]=1;
     for(int i=1;i<m;i++) {
       dp[i] = new int[n];
       for(int j=0; j<n;j++) {
         if(j<=i) {
           if(base.charAt(i) == target.charAt(j)) {
-            dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
+            if(j==0) dp[i][j] = i+1 + dp[i-1][j];
+            else dp[i][j] = dp[i-1][j-1] + dp[i-1][j];
           }
           else {
             dp[i][j] = dp[i-1][j];
@@ -30,6 +32,6 @@ public class StringMatch2 {
   }
 
   public static void main(String[] args) {
-    utils.println(StringMatch2.count("asb", "sdf"));
+    Utils.println(StringMatch2.count("asb", "s"));
   }
 }
