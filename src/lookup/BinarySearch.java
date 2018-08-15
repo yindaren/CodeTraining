@@ -31,7 +31,6 @@ public class BinarySearch {
         if (up < low) {
             return - low - 1;
         }
-        int p = end;
         //if (end <= start) return - start - 1;
         while (low < up) {
             int mid = (low + up)/2;

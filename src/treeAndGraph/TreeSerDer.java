@@ -2,64 +2,37 @@ package treeAndGraph;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
 /**
  * 对二叉树进行序列化，反序列化
  */
 public class TreeSerDer {
-    public static void help1(Node n, StringBuilder result) {
-        if(n==null) result.append( "s");
-        else {
-            result.append(String.valueOf(n.value));
-            help1(n.left, result);
-            help1(n.right, result);
-        }
-    }
 
     // 前序遍历序列化
     public static String ser1(Node root) {
-        StringBuilder result = new StringBuilder();
-        help1(root, result);
-        return result.toString();
+        StringBuilder sb = new StringBuilder();
+        if(root == null){
+            sb.append("#,");
+            return sb.toString();
+        }
+        sb.append(root.value + ",");
+        sb.append(ser1(root.left));
+        sb.append(ser1(root.right));
+        return sb.toString();
     }
 
+    static  int index = -1;
     // 前序遍历反序列化
     public static Node des1(String str) {
-        if(str == null || str.length() == 0 || str.equals("s")) return null;
-        int n = str.length();
-        Stack<Node> stack = new Stack<>();
-        Node result = new Node(Integer.valueOf(str.charAt(0)+""));
-        Node last = result;
-        int i=1;
-        stack.push(last);
-        while(i<n) {
-            char c = str.charAt(i);
-            if(c!='s') {
-                Node tmp =  new Node(Integer.valueOf(c+""));
-                last.left = tmp;
-                last = tmp;
-                stack.push(last);
-            }
-            else {
-                while(++i<n) {
-                    c = str.charAt(i);
-                    if(c=='s') {
-                        if(!stack.isEmpty())
-                            last = stack.pop();
-                    }
-                    else {
-                        Node tmp =  new Node(Integer.valueOf(c+""));
-                        last.right = tmp;
-                        last = tmp;
-                        stack.push(last);
-                        break;
-                    }
-                }
-            }
-            i++;
+        index++;
+        String[] strr = str.split(",");
+        Node node = null;
+        if(!strr[index].equals("#")){
+        node = new Node(Integer.valueOf(strr[index]));
+        node.left = des1(str);
+        node.right = des1(str);
         }
-        return result;
+        return node;
     }
 
     // 层次遍历序列化
@@ -68,22 +41,22 @@ public class TreeSerDer {
         StringBuilder sb = new StringBuilder();
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
-        sb.append(String.valueOf(root.value));
+        sb.append(String.valueOf(root.value) + ",");
         while(!queue.isEmpty()) {
             Node tmp = queue.poll();
             if(tmp.left == null) {
-                sb.append("s");
+                sb.append("s,");
             }
             else {
-                sb.append(String.valueOf(tmp.left.value));
+                sb.append(String.valueOf(tmp.left.value) + ",");
                 queue.offer(tmp.left);
             }
 
             if(tmp.right == null) {
-                sb.append("s");
+                sb.append("s,");
             }
             else {
-                sb.append(String.valueOf(tmp.right.value));
+                sb.append(String.valueOf(tmp.right.value) + ',');
                 queue.offer(tmp.right);
             }
         }
@@ -93,20 +66,21 @@ public class TreeSerDer {
     // 层次遍历反序列化
     public static Node der2(String str) {
         if(str == null || str.length() == 0 || str.equals("s")) return null;
-        Node result = new Node(Integer.valueOf(str.charAt(0)+""));
+        String[] strs = str.split(",");
+        Node result = new Node(Integer.valueOf(strs[0]));
         Queue<Node> queue = new LinkedList<>();
         queue.offer(result);
-        int i = 0, n = str.length();
+        int i = 0, n = strs.length;
         while(!queue.isEmpty()) {
             int count = queue.size();
             for(int j=0;j<count;j++) { // 不能用j<queue.size(), size每次会重算
                 Node tmp = queue.poll();
-                if(str.charAt(++i) != 's') {
-                    tmp.left = new Node(Integer.valueOf(str.charAt(i)+""));
+                if(!strs[++i] .equals("s")) {
+                    tmp.left = new Node(Integer.valueOf(strs[i]+""));
                     queue.offer(tmp.left);
                 }
-                if(str.charAt(++i) != 's') {
-                    tmp.right = new Node(Integer.valueOf(str.charAt(i)+""));
+                if(!strs[++i] .equals("s")) {
+                    tmp.right = new Node(Integer.valueOf(strs[i]+""));
                     queue.offer(tmp.right);
                 }
             }
@@ -126,8 +100,9 @@ public class TreeSerDer {
             if(in[i] == root) break;
         }
         Node curRoot = new Node(root);
-        curRoot.left = help3(pre, in, rootIndex+1, start, i-1); // 找到下一个根节点
-        curRoot.right = help3(pre, in, rootIndex+i-start+1, i+1, end);
+        // 从根节点分成两段继续递归
+        curRoot.left = help3(pre, in, rootIndex+1, start, i-1); // 找到下一个根节点, 第一个直接加1
+        curRoot.right = help3(pre, in, rootIndex+i-start+1, i+1, end);// 第二个
         return curRoot;
     }
 
@@ -136,4 +111,6 @@ public class TreeSerDer {
         int n = pre.length;
         return help3(pre, in, 0, 0, n-1);
     }
+
+
 }
