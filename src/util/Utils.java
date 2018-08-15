@@ -2,7 +2,7 @@ package util;
 
 import java.util.Scanner;
 
-public class utils {
+public class Utils {
 
   public static void swap(int[] nums, int i, int j) {
     int tmp = nums[i];

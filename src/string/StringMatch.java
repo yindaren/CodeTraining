@@ -1,6 +1,6 @@
 package string;
 
-import util.utils;
+import util.Utils;
 
 /**
  * 字符串匹配算法。包括暴力法（BF）,(滚动哈系法)RK，KMP，BM，SUNDAY
@@ -147,10 +147,10 @@ public class StringMatch {
   public static void main(String[] args) {
     String str = "adfdfsdassdffjftfg";
     String pat = "sdf";
-    utils.println(bf(str, pat));
-    utils.println(rk(str, pat));
-    utils.println(kmp(str, pat));
-    utils.println(bm(str, pat));
-    utils.println(sunday(str, pat));
+    Utils.println(bf(str, pat));
+    Utils.println(rk(str, pat));
+    Utils.println(kmp(str, pat));
+    Utils.println(bm(str, pat));
+    Utils.println(sunday(str, pat));
   }
 }

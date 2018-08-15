@@ -1,6 +1,6 @@
 package string;
 
-import util.utils;
+import util.Utils;
 
 /**
  * 字符串匹配，与1不同的是，子串只需按顺序包含目标串字符即可。如：abcde中的bcd包含bd
@@ -32,6 +32,6 @@ public class StringMatch2 {
   }
 
   public static void main(String[] args) {
-    utils.println(StringMatch2.count("asb", "s"));
+    Utils.println(StringMatch2.count("asb", "s"));
   }
 }
