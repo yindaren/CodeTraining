@@ -78,7 +78,7 @@ public class ShortestPath {
     for(int k=1;k<=n;k++) {
       for(int i=1;i<=n;i++) {
         for(int j=1;j<=n;j++) {
-          if(path[i][k]!=-1 && path[k][j]!=-1 && (path[i][j] == -1 || path[i][k] + path[k][j] < path[i][j])) {
+          if(path[i][k]!=0 && path[k][j]!=0 && (path[i][j] == -1 || path[i][k] + path[k][j] < path[i][j])) {
             path[i][j] = path[i][k] + path[k][j];
           }
         }

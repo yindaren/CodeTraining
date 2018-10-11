@@ -11,7 +11,7 @@ import java.util.HashMap;
  *
  *
  * 2-sum较简单，且要求返回下标，不能排序
- * 3-sum先对数组进行排序，方便处理。
+ * 3-sum先对数组进行排序，方便处理（找后两个可以使用双指针法）。
  * 更多数之和都是类似的
  */
 public class TwoAndThreeSum {

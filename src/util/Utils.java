@@ -4,6 +4,34 @@ import java.util.Scanner;
 
 public class Utils {
 
+  /**
+   * n!/(n - m)!, 可优化为n*n-1*n-2....共m个数相乘
+   */
+  public static long A(long m, long n) {
+    if(m>n) return 0;
+    long num = m, tmp = n;
+    long result = 1;
+    while(num-- > 0) {
+      result *= tmp--;
+    }
+    return result;
+  }
+
+  /**
+   * n!/(n - m)!* m! = A / m!
+   */
+  public static long C(long m, long n) {
+    if(m>n) return 0;
+    long tmpM = m > n / 2 ? (n-m):m, tmpN = n;
+    long result = 1;
+    long base = 1;
+    while(tmpM > 0) {
+      result *= tmpN--;
+      base *= tmpM--;
+    }
+    return result / base;
+  }
+
   public static void swap(int[] nums, int i, int j) {
     int tmp = nums[i];
     nums[i] = nums[j];
@@ -33,8 +61,20 @@ public class Utils {
     return p1;
   }
 
+  public static <T> void printArray(T[] a) {
+    printArray(a, 0, a.length);
+  }
+
   public static void printArray(int[] a) {
     printArray(a, 0, a.length);
+  }
+
+  public static <T> void printArray(T[] a, int start, int end) {
+    for(int i=start;i<end;i++) {
+      System.out.print(a[i]);
+      System.out.print(",");
+    }
+    System.out.print("\n");
   }
 
   public static void printArray(int[] a, int start, int end) {

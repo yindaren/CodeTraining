@@ -94,7 +94,7 @@ public class SuffixTree {
         // 分割完成之后需根据规则1和规则3进行区分对待
         // 按照规则1进行处理
         if (root == activePoint.point) {// 活动节点是根节点的情况
-          // activePoint.point == root
+          // activePoint.point == Root
           // 按照规则3进行处理
         } else if (null == activePoint.point.suffixNode) {// 无后缀节点，则活动节点变为root
           activePoint.point = root;
@@ -168,7 +168,7 @@ public class SuffixTree {
 
       // 按照规则1进行处理
       if (root == activePoint.point) {// 活动节点是根节点的情况
-        // activePoint.point == root
+        // activePoint.point == Root
 
         // 按照规则3进行处理
       } else if (null == activePoint.point.suffixNode) {// 无后缀节点，则活动节点变为root
@@ -266,7 +266,7 @@ public class SuffixTree {
    */
   public void print() {
     Node child = root.child;
-    System.out.println("[root] [activePoint:(" + activePoint.point + "," + activePoint.index + ","
+    System.out.println("[Root] [activePoint:(" + activePoint.point + "," + activePoint.index + ","
         + activePoint.length + ")], [reminder:" + reminder + "]");
     while (child != null) {
       System.out.print("|——");

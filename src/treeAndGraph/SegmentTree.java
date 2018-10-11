@@ -48,7 +48,7 @@ public class SegmentTree {
 
     /**
      *@param start, end: Denote an segment / interval
-     *@return: The root of Segment Tree
+     *@return: The Root of Segment Tree
      */
     public static SegmentTreeNode build(int[] A, int start, int end) {
         // write your code here
@@ -67,7 +67,7 @@ public class SegmentTree {
     }
 
     /**
-     * 该方法将 root 为跟的线段树中 [start, end] = [index, index] 的节点修改为了新的 value ，
+     * 该方法将 Root 为跟的线段树中 [start, end] = [index, index] 的节点修改为了新的 value ，
      * 并确保在修改后，线段树的每个节点的 value 属性仍然具有正确的值(这里实现的value代表的是最大值)。
      */
     public void modify(SegmentTreeNode root, int index, int value) {
